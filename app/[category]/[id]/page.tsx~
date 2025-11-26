@@ -1,0 +1,17 @@
+"use client"
+import MovieDetailPage from "@/pages/movie-detail";
+import { useParams } from "next/navigation";
+
+
+export default function MovieDetail() {
+    const {id } : any = useParams();
+
+    console.log(id , "log")
+    return (
+        <div>
+            <MovieDetailPage/>
+
+        </div>
+    );
+};
+
