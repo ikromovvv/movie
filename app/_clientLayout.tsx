@@ -2,10 +2,11 @@
 
 import type React from "react"
 
-import { Analytics } from "@vercel/analytics/next"
+
 import { Provider } from "react-redux"
 import store from "@/store/store"
-import Header from "@/components/header";
+
+import MenuHeader from "@/pages/menuHeader";
 
 export default function ClientLayout({
   children,
@@ -13,10 +14,12 @@ export default function ClientLayout({
   children: React.ReactNode
 }>) {
   return (
-    <>
-        {/*<Header/>*/}
-      <Provider store={store}>{children}</Provider>
-      {/*<Analytics />*/}
-    </>
+      <Provider store={store}>
+          <MenuHeader />   {/* ✔ Endi Provider ichida */}
+
+          <div className="mt-[80px]">
+              {children}
+          </div>
+      </Provider>
   )
 }
