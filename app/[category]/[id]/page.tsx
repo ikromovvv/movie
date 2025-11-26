@@ -1,14 +1,6 @@
-
 import MovieDetailPage from "@/pages/movie-detail";
 
+export default function MovieDetail({ params } : any) {
 
-export default function MovieDetail() {
-
-    return (
-        <div>
-            <MovieDetailPage/>
-
-        </div>
-    );
-};
-
+    return <MovieDetailPage params={params} />;
+}

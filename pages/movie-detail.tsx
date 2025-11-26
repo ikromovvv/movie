@@ -1,6 +1,5 @@
 "use client"
 
-import { useParams } from "next/navigation";
 import { useSelector } from "react-redux"
 import type { RootState } from "@/store/store"
 import MoviePlayer from "@/components/movie-player"
@@ -8,11 +7,12 @@ import MovieInfo from "@/components/movie-info"
 import { ArrowLeft } from "lucide-react"
 import MovieGrid from "@/components/movie-grid";
 
-export default function MovieDetailPage() {
-    const { category, id } :any = useParams();
+export default function MovieDetailPage({params} : {params: any}) {
+    const { category, id } :any = params.value;
     const { movies } = useSelector((state: RootState) => state.movies)
 
     const movie = movies.find((m) => m.id === id)
+
 
 
     if (!movie) {
