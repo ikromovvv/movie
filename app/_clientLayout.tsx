@@ -15,7 +15,7 @@ export default function ClientLayout({
 }>) {
   return (
       <Provider store={store}>
-          <MenuHeader />   {/* ✔ Endi Provider ichida */}
+          <MenuHeader />
 
           <div className="mt-[80px]">
               {children}
