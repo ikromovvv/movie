@@ -15,7 +15,6 @@ export default function MovieGrid() {
   const router = useRouter();
   const category = localStorage.getItem("activeMenuItem");
 
-  console.log(category, "category")
   const handleMovieClick = (movie: Movie) => {
     dispatch(setCurrentMovie(movie))
     if (category === null || category === undefined || category === "/") {
