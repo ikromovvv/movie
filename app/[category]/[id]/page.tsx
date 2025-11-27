@@ -1,11 +1,7 @@
-
-export default function MovieDetail({ params } : any) {
-
-
+export default function MovieDetail() {
     return (
-        <div>
-            <h1>profile</h1>
+        <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+            <h1 className="text-3xl font-bold">Profile</h1>
         </div>
     )
 }
-// params ? <MovieDetailPage params={params} /> : "loading";
