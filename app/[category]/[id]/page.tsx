@@ -1,8 +1,13 @@
 "use client"
 
-import Header from "@/components/header" // agar header bor bo‘lsa
+import Header from "@/components/header"
+import {useParams} from "next/navigation"; // agar header bor bo‘lsa
 
 export default function ProfilePage() {
+
+
+    const { id} = useParams()
+    console.log(id)
     return (
         <div className="min-h-screen bg-background text-foreground">
             {/* Header */}
