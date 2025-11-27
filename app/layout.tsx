@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./_clientLayout"
 
-import MenuHeader from "@/pages/menuHeader";
+import MenuHeader from "@/app/components/menuHeader/menuHeader";
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })

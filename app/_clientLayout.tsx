@@ -5,8 +5,8 @@ import type React from "react"
 
 import { Provider } from "react-redux"
 import store from "@/store/store"
+import MenuHeader from "@/app/components/menuHeader/menuHeader";
 
-import MenuHeader from "@/pages/menuHeader";
 
 export default function ClientLayout({
   children,

@@ -9,6 +9,7 @@ import MovieGrid from "@/components/movie-grid";
 
 export default function MovieDetailPage({params} : {params: any}) {
     const { category, id } :any = params?.value;
+
     const { movies } = useSelector((state: RootState) => state.movies)
 
     const movie = movies.find((m) => m.id === id)
