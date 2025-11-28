@@ -36,7 +36,7 @@ export const MovieDetail = ({id} : any) => {
         <div className="min-h-screen bg-background text-foreground">
             <MovieInfo movie={movie} />
 
-            <div className="w-[100%] mx-auto mb-12">
+            <div className="sm:w-[80%] w-[90%] mx-auto mb-12">
                 <MoviePlayer videoUrl={movie.videoUrl} title={movie.title} />
             </div>
 

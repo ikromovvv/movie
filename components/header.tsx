@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState, useCallback } from "react"
 import { setSearchQuery } from "@/store/slices/filterSlice"
 import type { RootState } from "@/store/store"
-import {ArrowLeft, Menu, Search, X} from "lucide-react"
+import {ArrowLeft, Menu, X} from "lucide-react"
 import {useParams, useRouter} from "next/navigation";
 import {useMediaQuery} from "@/hooks/use-mobile";
+import { Input, Space } from 'antd';
 
+const { Search } = Input;
 
 export default function Header({activeMenu , setActiveMenu} : {setActiveMenu?: any , activeMenu?: boolean}) {
   const dispatch = useDispatch()
@@ -30,8 +32,9 @@ export default function Header({activeMenu , setActiveMenu} : {setActiveMenu?: a
       dispatch(setSearchQuery(value))
     },
     [dispatch],
-
   )
+
+  console.log(input)
 
   return (
     <header className="sticky top-0 z-40 bg-card border-b border-border shadow-lg">
@@ -56,16 +59,8 @@ export default function Header({activeMenu , setActiveMenu} : {setActiveMenu?: a
         {/* Search Bar */}
         <div className="flex-1 max-w-[350px] focus:w-[400px]">
           {/*<span>film nomini yozib bulgandan keyin </span>*/}
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search movies..."
-              value={input}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="w-full px-4 py-2 pl-10 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary sm:text-[15px] text-[13px]"
-            />
-            <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-          </div>
+          <Search placeholder="Film nomi yoki Film kodi" onSearch={handleSearch} size={"large"} />
+
 
 
         </div>

@@ -7,11 +7,10 @@ import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react"
 export default function MoviePlayer({ videoUrl, title }: { videoUrl: string; title: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [volume, setVolume] = useState(1)
-  const [isMuted, setIsMuted] = useState(true) // mobile autoplay uchun boshlang‘ich muted = true
+  const [isMuted, setIsMuted] = useState(true) // mobile autoplay uchun boshlanish muted
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    // Safari autoplay fix
     if (videoRef.current) {
       videoRef.current.volume = isMuted ? 0 : volume
     }
@@ -23,10 +22,7 @@ export default function MoviePlayer({ videoUrl, title }: { videoUrl: string; tit
     if (isPlaying) {
       videoRef.current.pause()
     } else {
-      videoRef.current.play().catch(() => {
-        // Safari’da autoplay blok bo‘lsa play bosilganda o‘ynaydi
-        videoRef.current?.play()
-      })
+      videoRef.current.play().catch(() => videoRef.current?.play())
     }
     setIsPlaying(!isPlaying)
   }
@@ -58,7 +54,7 @@ export default function MoviePlayer({ videoUrl, title }: { videoUrl: string; tit
     if (!video) return
 
     if (video.requestFullscreen) video.requestFullscreen()
-        // iPhone fullscreen fix
+        // iPhone Safari fullscreen fix
     // @ts-ignore
     else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen()
   }
@@ -71,14 +67,24 @@ export default function MoviePlayer({ videoUrl, title }: { videoUrl: string; tit
             className="w-full h-full"
             onClick={togglePlay}
             onEnded={() => setIsPlaying(false)}
-            playsInline        // mobile uchun majburiy
+            playsInline
             webkit-playsinline="true"
-            muted              // autoplay ishlashi uchun iPhone talab qiladi
-            controls={false}   // custom controls
+            muted
+            controls={false}
         />
 
-        {/* Controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent sm:p-4 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {/* CONTROLS */}
+        <div
+            className="
+          absolute bottom-0 left-0 right-0
+          bg-gradient-to-t from-black/80 to-transparent
+          sm:p-4 p-2
+          opacity-100              /* mobile doim ko‘rinadi */
+          sm:opacity-0             /* desktop hover */
+          sm:group-hover:opacity-100
+          transition-opacity duration-300
+        "
+        >
           <div className="flex items-center gap-3">
 
             {/* Play / Pause */}
@@ -104,7 +110,7 @@ export default function MoviePlayer({ videoUrl, title }: { videoUrl: string; tit
             </div>
 
             {/* Fullscreen */}
-            <button onClick={toggleFullscreen} className="sm:p-2 p-1 rounded hover:bg-white/20 transition-colors ml-auto">
+            <button onClick={toggleFullscreen} className="ml-auto sm:p-2 p-1 rounded hover:bg-white/20 transition-colors">
               <Maximize size={20} className="text-white" />
             </button>
           </div>

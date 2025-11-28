@@ -39,6 +39,7 @@ export const MainMenu = ({
 
         localStorage.setItem("activeMenuItem", key);
         localStorage.setItem("activeMenuName", menuItem?.description || "");
+        localStorage.setItem("activeMenuLabel", menuItem?.label || "");
         setActiveMenuItem(key);
         setActiveMenuLabel(menuItem?.description || "");
         router.push("/" + key);
