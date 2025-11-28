@@ -115,7 +115,17 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+::-webkit-scrollbar{
+  width: 5px;
+  background-color: white;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: rgba(0, 0, 0, 0.71);
+  backdrop-filter: blur(5px) ;
+  border-radius: 10px;
 
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;

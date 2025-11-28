@@ -45,6 +45,15 @@ export const MainMenu = ({
         onClose?.()
     }
 
+    useEffect(() => {
+        if (activeMenu){
+            document.body.style.overflow = "hidden"
+        }else {
+            document.body.style.overflow = "auto"
+        }
+    } , [activeMenu])
+
+
     return (
         <>
             {/* Overlay */}
@@ -67,7 +76,9 @@ export const MainMenu = ({
                         padding: "10px",
                         backgroundColor: "oklch(0.145 0 0)",
                         borderRadius: " 0 10px 0 0 ",
-                        fontSize: "16px"
+                        fontSize: "16px",
+                        overflow: "auto",
+                        height: "90vh"
                     }}
                     //@ts-ignore
                     items={menuConfigItem}
