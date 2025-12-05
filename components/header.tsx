@@ -22,7 +22,6 @@ export default function Header({activeMenu , setActiveMenu} : {setActiveMenu?: a
   const isMobileDesc = useMediaQuery("(max-width: 700px)")
 
 
-  const router = useRouter();
 
   const {activeMenuName} =  useSelector((state : RootState) => state.header)
 
@@ -42,9 +41,6 @@ export default function Header({activeMenu , setActiveMenu} : {setActiveMenu?: a
         {/* Logo */}
 
         <div className="flex items-center gap-2">
-          {id || category ? <div onClick={() => router.back()} className={" cursor-pointer border-2  px-2 py-1 rounded-[7px] flex gap-1 items-center active:scale-95 "}>
-            Ortga
-          </div> : null}
           {!activeMenu ?  <Menu  className={"cursor-pointer"} size={30} onClick={() => setActiveMenu(!activeMenu)} /> :
               <X className={"cursor-pointer"} size={30} onClick={() => setActiveMenu(!activeMenu)} />}
           {!isMobileTitle && <div>

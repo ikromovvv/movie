@@ -2,11 +2,20 @@
 
 import type { Movie } from "@/store/slices/moviesSlice"
 import { Calendar, Clock, Star, User } from "lucide-react"
+import {useRouter} from "next/navigation";
 
 export default function MovieInfo({ movie }: { movie: Movie }) {
+
+
+  const router = useRouter();
+
   return (
     <div className="container mx-auto px-4 py-12">
+      <div onClick={() => router.back()} className={"w-fit mb-[10px] cursor-pointer border-2  px-2 py-1 rounded-[7px] flex gap-1 items-center active:scale-95 "}>
+        Ortga
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
         {/* Left Column - Poster */}
         <div className="md:col-span-1">
           <img src={movie.poster || "/placeholder.svg"} alt={movie.title} className="w-full rounded-lg shadow-2xl" />

@@ -6,6 +6,7 @@ import type React from "react"
 import { Provider } from "react-redux"
 import store from "@/store/store"
 import MenuHeader from "@/app/components/menuHeader/menuHeader";
+import {Toaster} from "@/components/ui/toaster";
 
 
 export default function ClientLayout({
@@ -15,6 +16,7 @@ export default function ClientLayout({
 }>) {
   return (
       <Provider store={store}>
+          <Toaster/>
           <MenuHeader />
 
           <div className="mt-[80px]">

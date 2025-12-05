@@ -6,10 +6,11 @@ import MoviePlayer from "@/components/movie-player"
 import MovieInfo from "@/components/movie-info"
 import { ArrowLeft } from "lucide-react"
 import MovieGrid from "@/components/movie-grid";
+import {CommentSection} from "@/components/comment-section/comment-section";
 
 export const MovieDetail = ({id} : any) => {
 
-    const { movies } = useSelector((state: RootState) => state.movies)
+    const { movies , comments } = useSelector((state: RootState) => state.movies)
 
     const movie = movies.find((m) => m.id === id)
 
@@ -34,10 +35,15 @@ export const MovieDetail = ({id} : any) => {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
+
             <MovieInfo movie={movie} />
 
             <div className="sm:w-[80%] w-[90%] mx-auto mb-12">
                 <MoviePlayer videoUrl={movie.videoUrl} title={movie.title} />
+            </div>
+
+            <div className={"container mx-auto sm:px-4 px-1 sm:py-8 py-4"}>
+                <CommentSection comments={comments}/>
             </div>
 
             <div className="container mx-auto sm:px-4 px-1 sm:py-8 py-4">

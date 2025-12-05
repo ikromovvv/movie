@@ -15,9 +15,20 @@ export interface Movie {
   cast: string[]
 }
 
+export interface MovieComment {
+  id: number
+  author: string
+  content: string
+  datetime: string
+  rating?: number
+  likes: number,
+  dislikes: number
+}
+
 interface MoviesState {
   movies: Movie[]
   currentMovie: Movie | null
+  comments: MovieComment[]
 }
 
 const initialMovies: Movie[] = [
@@ -112,13 +123,43 @@ const moviesSlice = createSlice({
   initialState: {
     movies: initialMovies,
     currentMovie: null,
+    comments: [
+      {
+        id: 1,
+        author: "Sardor",
+        content: "Salom, bu birinchi komment!",
+        datetime: "2025-12-05 13:00",
+        dislikes: 15,
+        likes: 103
+      },
+      {
+        id: 2,
+        author: "Ali",
+        content: "Ha, juda yaxshi misol bo‘ldi.",
+        datetime: "2025-12-05 13:10",
+        dislikes: 25,
+        likes: 130
+      },
+      {
+        id: 3,
+        author: "Nodir",
+        content: "Men ham o‘z fikrimni qo‘shmoqchiman.",
+        datetime: "2025-12-05 13:15",
+        dislikes: 5,
+        likes: 10
+      }
+    ]
   } as MoviesState,
   reducers: {
     setCurrentMovie: (state, action: PayloadAction<Movie | null>) => {
       state.currentMovie = action.payload
     },
+    addComment: (state, action: PayloadAction<Comment>) => {
+      // @ts-ignore
+      state.comments = [...state.comments , action.payload]
+    },
   },
 })
 
-export const { setCurrentMovie } = moviesSlice.actions
+export const { setCurrentMovie , addComment } = moviesSlice.actions
 export default moviesSlice.reducer
